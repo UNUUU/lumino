@@ -11,6 +11,13 @@ import Alamofire
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var buttonScan: UIButton!
+    
+    @IBAction func onTouchButtonScan(sender: AnyObject) {
+        print("onTouchButtonScan")
+    }
+    
     private let deviceId: String? = UIDevice.currentDevice().identifierForVendor?.UUIDString
 
     override func viewDidLoad() {
@@ -31,8 +38,10 @@ class ViewController: UIViewController {
             print("not found device id")
             return
         }
+        indicator.hidden = false
         Alamofire.request(.PUT, "https://lumino.herokuapp.com/\(deviceId)/notification", parameters: ["token": token]).responseString {
             response in
+            self.indicator.hidden = true
             print("statusCode: \(response.response?.statusCode)")
             if response.result.isFailure {
                 print("failed put device id")

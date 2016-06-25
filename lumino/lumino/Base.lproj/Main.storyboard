@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,8 +17,67 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-ew-WGP">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRG-8m-Lir">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Scan"/>
+                                <connections>
+                                    <action selector="onTouchButtonScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjm-Rs-sOI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JMc-ew-WGP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MCy-qw-Oza"/>
+                            <constraint firstItem="JMc-ew-WGP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OCQ-Tp-tbL"/>
+                            <constraint firstItem="IRG-8m-Lir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SzY-qd-5t8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JMc-ew-WGP" secondAttribute="bottom" constant="282" id="Uh7-27-aF9"/>
+                            <constraint firstItem="JMc-ew-WGP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="162" id="ZKB-wP-G5A"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IRG-8m-Lir" secondAttribute="bottom" constant="30" id="fQG-r1-KEr"/>
+                            <constraint firstItem="JMc-ew-WGP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="261" id="gTY-Bm-NwU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JMc-ew-WGP" secondAttribute="trailing" constant="161" id="zP0-c5-5Uc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="JMc-ew-WGP"/>
+                                <exclude reference="IRG-8m-Lir"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="MCy-qw-Oza"/>
+                                <exclude reference="OCQ-Tp-tbL"/>
+                                <exclude reference="ZKB-wP-G5A"/>
+                                <exclude reference="gTY-Bm-NwU"/>
+                                <exclude reference="zP0-c5-5Uc"/>
+                                <exclude reference="SzY-qd-5t8"/>
+                                <exclude reference="Uh7-27-aF9"/>
+                                <exclude reference="fQG-r1-KEr"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="JMc-ew-WGP"/>
+                                <include reference="IRG-8m-Lir"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="MCy-qw-Oza"/>
+                                <include reference="OCQ-Tp-tbL"/>
+                                <exclude reference="ZKB-wP-G5A"/>
+                                <exclude reference="gTY-Bm-NwU"/>
+                                <exclude reference="zP0-c5-5Uc"/>
+                                <include reference="SzY-qd-5t8"/>
+                                <exclude reference="Uh7-27-aF9"/>
+                                <include reference="fQG-r1-KEr"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="buttonScan" destination="IRG-8m-Lir" id="noM-0U-Kmu"/>
+                        <outlet property="indicator" destination="JMc-ew-WGP" id="vrp-3P-N00"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
