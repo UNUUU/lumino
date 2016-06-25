@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -29,9 +30,18 @@
                                     <action selector="onTouchButtonScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjm-Rs-sOI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNV-yo-KJk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Peripheral"/>
+                                <connections>
+                                    <action selector="onTouchPeripheral:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vDv-wd-1Vd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IRG-8m-Lir" firstAttribute="top" secondItem="GNV-yo-KJk" secondAttribute="bottom" constant="15" id="2l6-2I-9im"/>
+                            <constraint firstItem="GNV-yo-KJk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fsb-Xk-vhv"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MCy-qw-Oza"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OCQ-Tp-tbL"/>
                             <constraint firstItem="IRG-8m-Lir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SzY-qd-5t8"/>
@@ -45,32 +55,38 @@
                             <mask key="subviews">
                                 <exclude reference="JMc-ew-WGP"/>
                                 <exclude reference="IRG-8m-Lir"/>
+                                <exclude reference="GNV-yo-KJk"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Uh7-27-aF9"/>
+                                <exclude reference="fQG-r1-KEr"/>
                                 <exclude reference="MCy-qw-Oza"/>
                                 <exclude reference="OCQ-Tp-tbL"/>
                                 <exclude reference="ZKB-wP-G5A"/>
                                 <exclude reference="gTY-Bm-NwU"/>
                                 <exclude reference="zP0-c5-5Uc"/>
+                                <exclude reference="Fsb-Xk-vhv"/>
+                                <exclude reference="2l6-2I-9im"/>
                                 <exclude reference="SzY-qd-5t8"/>
-                                <exclude reference="Uh7-27-aF9"/>
-                                <exclude reference="fQG-r1-KEr"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="JMc-ew-WGP"/>
                                 <include reference="IRG-8m-Lir"/>
+                                <include reference="GNV-yo-KJk"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Uh7-27-aF9"/>
+                                <include reference="fQG-r1-KEr"/>
                                 <include reference="MCy-qw-Oza"/>
                                 <include reference="OCQ-Tp-tbL"/>
                                 <exclude reference="ZKB-wP-G5A"/>
                                 <exclude reference="gTY-Bm-NwU"/>
                                 <exclude reference="zP0-c5-5Uc"/>
+                                <include reference="Fsb-Xk-vhv"/>
+                                <include reference="2l6-2I-9im"/>
                                 <include reference="SzY-qd-5t8"/>
-                                <exclude reference="Uh7-27-aF9"/>
-                                <include reference="fQG-r1-KEr"/>
                             </mask>
                         </variation>
                     </view>

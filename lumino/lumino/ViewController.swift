@@ -20,7 +20,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     @IBAction func onTouchButtonScan(sender: AnyObject) {
         print("onTouchButtonScan")
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        centralManager.scanForPeripheralsWithServices(nil, options: nil)
+    }
+    
+    @IBAction func onTouchPeripheral(sender: AnyObject) {
     }
     
     private let deviceId: String? = UIDevice.currentDevice().identifierForVendor?.UUIDString
@@ -58,19 +60,20 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         
     func centralManagerDidUpdateState(central: CBCentralManager) {
         switch central.state {
-        case CBCentralManagerState.PoweredOff:
+        case .PoweredOff:
             print("powered off")
             break
-        case CBCentralManagerState.PoweredOn:
+        case .PoweredOn:
             print("powered on")
+            centralManager.scanForPeripheralsWithServices(nil, options: nil)
             break
-        case CBCentralManagerState.Resetting:
+        case .Resetting:
             print("resetting")
             break
-        case CBCentralManagerState.Unauthorized:
+        case .Unauthorized:
             print("unauthorized")
             break
-        case CBCentralManagerState.Unsupported:
+        case .Unsupported:
             print("unsupported")
             break
         default:
@@ -81,19 +84,22 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         print("peripheral: \(peripheral)")
+        print("name: \(peripheral.name)")
+        print("UUID: \(peripheral.identifier.UUIDString)")
+        print("advertisementData: \(advertisementData)")
+        print("RSSI: \(RSSI)")
+        
         centralManager.stopScan()
+        
+        centralManager.connectPeripheral(peripheral, options: nil)
     }
     
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-    }
-    
-    func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
+        print("connection failed")
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-    }
-    
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("connection success!")
     }
 }
 

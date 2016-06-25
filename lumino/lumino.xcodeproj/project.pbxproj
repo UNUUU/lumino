@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CED9634CFCD5FC18E503C3EE /* Pods_lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */; };
+		EC0CDD951D1EADF700CF213B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */; };
 		EC1C8E5B1D1E170800AB98E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */; };
 		EC1C8E5D1D1E170800AB98E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */; };
 		EC1C8E601D1E170800AB98E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		0D8286AC3E6AB6B368BE4B3C /* Pods-lumino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lumino.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lumino/Pods-lumino.debug.xcconfig"; sourceTree = "<group>"; };
 		977486CCC223D299B4434EFB /* Pods-lumino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lumino.release.xcconfig"; path = "Pods/Target Support Files/Pods-lumino/Pods-lumino.release.xcconfig"; sourceTree = "<group>"; };
+		EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC1C8E571D1E170800AB98E8 /* lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		EC1C8E591D1E170800AB98E8 /* lumino */ = {
 			isa = PBXGroup;
 			children = (
+				EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */,
 				EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */,
 				EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */,
 				EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */,
@@ -123,6 +126,12 @@
 				TargetAttributes = {
 					EC1C8E561D1E170800AB98E8 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = U3G33TW96T;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -150,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */,
+				EC0CDD951D1EADF700CF213B /* GoogleService-Info.plist in Resources */,
 				EC1C8E621D1E170800AB98E8 /* Assets.xcassets in Resources */,
 				EC1C8E601D1E170800AB98E8 /* Main.storyboard in Resources */,
 			);
@@ -255,7 +265,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -331,6 +342,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
 			};
 			name = Debug;
 		};
@@ -339,10 +351,13 @@
 			baseConfigurationReference = 977486CCC223D299B4434EFB /* Pods-lumino.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				INFOPLIST_FILE = lumino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
 			};
 			name = Release;
 		};
