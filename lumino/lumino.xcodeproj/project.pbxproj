@@ -8,18 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		CED9634CFCD5FC18E503C3EE /* Pods_lumino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */; };
-		EC0CDD951D1EADF700CF213B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */; };
 		EC1C8E5B1D1E170800AB98E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */; };
 		EC1C8E5D1D1E170800AB98E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */; };
 		EC1C8E601D1E170800AB98E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */; };
 		EC1C8E621D1E170800AB98E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E611D1E170800AB98E8 /* Assets.xcassets */; };
 		EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E631D1E170800AB98E8 /* LaunchScreen.storyboard */; };
+		EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D8286AC3E6AB6B368BE4B3C /* Pods-lumino.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lumino.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lumino/Pods-lumino.debug.xcconfig"; sourceTree = "<group>"; };
 		977486CCC223D299B4434EFB /* Pods-lumino.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lumino.release.xcconfig"; path = "Pods/Target Support Files/Pods-lumino/Pods-lumino.release.xcconfig"; sourceTree = "<group>"; };
-		EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC1C8E571D1E170800AB98E8 /* lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +26,7 @@
 		EC1C8E611D1E170800AB98E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1C8E641D1E170800AB98E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1C8E661D1E170800AB98E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,7 +80,7 @@
 		EC1C8E591D1E170800AB98E8 /* lumino */ = {
 			isa = PBXGroup;
 			children = (
-				EC0CDD941D1EADF700CF213B /* GoogleService-Info.plist */,
+				EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */,
 				EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */,
 				EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */,
 				EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */,
@@ -128,6 +128,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = U3G33TW96T;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -159,7 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */,
-				EC0CDD951D1EADF700CF213B /* GoogleService-Info.plist in Resources */,
+				EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */,
 				EC1C8E621D1E170800AB98E8 /* Assets.xcassets in Resources */,
 				EC1C8E601D1E170800AB98E8 /* Main.storyboard in Resources */,
 			);

@@ -31,8 +31,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("deviceId: \(deviceId)")
-        
-        registerNotificationToken("123456")
+        indicator.hidden = true
+        // registerNotificationToken("123456")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,24 +40,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    private func registerNotificationToken(token: String) {
-        guard let deviceId = deviceId else {
-            print("not found device id")
-            return
-        }
-        indicator.hidden = false
-        Alamofire.request(.PUT, "https://lumino.herokuapp.com/\(deviceId)/notification", parameters: ["token": token]).responseString {
-            response in
-            self.indicator.hidden = true
-            print("statusCode: \(response.response?.statusCode)")
-            if response.result.isFailure {
-                print("failed put device id")
-                return
-            }
-            print("success \(response.result.value)")
-        }
-    }
-        
     func centralManagerDidUpdateState(central: CBCentralManager) {
         switch central.state {
         case .PoweredOff:
