@@ -8,14 +8,19 @@
 
 import UIKit
 import Alamofire
+import CoreBluetooth
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CBCentralManagerDelegate {
+    
+    private var centralManager: CBCentralManager!
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var buttonScan: UIButton!
     
     @IBAction func onTouchButtonScan(sender: AnyObject) {
         print("onTouchButtonScan")
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        centralManager.scanForPeripheralsWithServices(nil, options: nil)
     }
     
     private let deviceId: String? = UIDevice.currentDevice().identifierForVendor?.UUIDString
@@ -49,6 +54,46 @@ class ViewController: UIViewController {
             }
             print("success \(response.result.value)")
         }
+    }
+        
+    func centralManagerDidUpdateState(central: CBCentralManager) {
+        switch central.state {
+        case CBCentralManagerState.PoweredOff:
+            print("powered off")
+            break
+        case CBCentralManagerState.PoweredOn:
+            print("powered on")
+            break
+        case CBCentralManagerState.Resetting:
+            print("resetting")
+            break
+        case CBCentralManagerState.Unauthorized:
+            print("unauthorized")
+            break
+        case CBCentralManagerState.Unsupported:
+            print("unsupported")
+            break
+        default:
+            print("unknown")
+            break
+        }
+    }
+    
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        print("peripheral: \(peripheral)")
+        centralManager.stopScan()
+    }
+    
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    }
+    
+    func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
+    }
+    
+    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
     }
 }
 
