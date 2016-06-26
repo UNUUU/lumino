@@ -128,7 +128,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
             print("error: \(error)")
             return
         }
-        
+
         let characteristics = service.characteristics
         print("Found \(characteristics!.count) characteristics! : \(characteristics)")
         for characteristic in characteristics! {
@@ -210,7 +210,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveWriteRequests requests: [CBATTRequest]) {
         
         for request in requests {
-            
+
             if request.characteristic.UUID.isEqual(CBUUID(string: "C8AF1B19-BCEA-40EC-9B3C-D7992E4E131B")) {
                 // CBCharacteristicのvalueに、CBATTRequestのvalueをセット
                 let receivedData = NSString(data: request.value!, encoding: NSUTF8StringEncoding)

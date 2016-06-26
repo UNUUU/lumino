@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("%@", userInfo)
         
         // メッセージを受信したので伝える
-        let message = userInfo["aps"]!["alert"]!!["body"] as! String
+        let message = userInfo["body"] as! String
         NSNotificationCenter.defaultCenter().postNotificationName("onReceiveMessage", object: nil, userInfo: ["message": message])
         
         completionHandler(UIBackgroundFetchResult.NoData)

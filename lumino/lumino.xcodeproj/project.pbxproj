@@ -14,6 +14,8 @@
 		EC1C8E621D1E170800AB98E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E611D1E170800AB98E8 /* Assets.xcassets */; };
 		EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E631D1E170800AB98E8 /* LaunchScreen.storyboard */; };
 		EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */; };
+		ECDB84371D20349C007B77A6 /* BluetoothListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB84361D20349C007B77A6 /* BluetoothListViewController.swift */; };
+		ECDB84391D203EAD007B77A6 /* PeripheralEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB84381D203EAD007B77A6 /* PeripheralEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		EC1C8E641D1E170800AB98E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1C8E661D1E170800AB98E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECDB84361D20349C007B77A6 /* BluetoothListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothListViewController.swift; sourceTree = "<group>"; };
+		ECDB84381D203EAD007B77A6 /* PeripheralEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralEntity.swift; sourceTree = "<group>"; };
 		F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,11 +86,13 @@
 			children = (
 				EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */,
 				EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */,
+				ECDB84361D20349C007B77A6 /* BluetoothListViewController.swift */,
 				EC1C8E5C1D1E170800AB98E8 /* ViewController.swift */,
 				EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */,
 				EC1C8E611D1E170800AB98E8 /* Assets.xcassets */,
 				EC1C8E631D1E170800AB98E8 /* LaunchScreen.storyboard */,
 				EC1C8E661D1E170800AB98E8 /* Info.plist */,
+				ECDB84381D203EAD007B77A6 /* PeripheralEntity.swift */,
 			);
 			path = lumino;
 			sourceTree = "<group>";
@@ -223,7 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDB84371D20349C007B77A6 /* BluetoothListViewController.swift in Sources */,
 				EC1C8E5D1D1E170800AB98E8 /* ViewController.swift in Sources */,
+				ECDB84391D203EAD007B77A6 /* PeripheralEntity.swift in Sources */,
 				EC1C8E5B1D1E170800AB98E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
