@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -23,80 +22,98 @@
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRG-8m-Lir">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Scan"/>
-                                <connections>
-                                    <action selector="onTouchButtonScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjm-Rs-sOI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNV-yo-KJk">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Peripheral"/>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="165" y="495" width="70" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="onTouchPeripheral:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vDv-wd-1Vd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-ug-cem">
+                                <rect key="frame" x="277" y="528" width="46" height="30"/>
+                                <state key="normal" title="Scan"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="183" y="540" width="35" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onTouchButtonScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIK-wl-3cA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me9-BL-r7S">
+                                <rect key="frame" x="251" y="482" width="98" height="30"/>
+                                <state key="normal" title="Peripheral"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="165" y="495" width="70" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onTouchPeripheral:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdp-JS-LDF"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7Oz-1y-h8y">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="181.5" y="281.5" width="37" height="37"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IRG-8m-Lir" firstAttribute="top" secondItem="GNV-yo-KJk" secondAttribute="bottom" constant="15" id="2l6-2I-9im"/>
                             <constraint firstItem="GNV-yo-KJk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fsb-Xk-vhv"/>
+                            <constraint firstItem="7Oz-1y-h8y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Hyn-no-VoA"/>
+                            <constraint firstItem="7Oz-1y-h8y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M4a-Ke-l2X"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MCy-qw-Oza"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OCQ-Tp-tbL"/>
-                            <constraint firstItem="IRG-8m-Lir" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SzY-qd-5t8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JMc-ew-WGP" secondAttribute="bottom" constant="282" id="Uh7-27-aF9"/>
+                            <constraint firstItem="GJo-ug-cem" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ws8-za-8nD"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="162" id="ZKB-wP-G5A"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IRG-8m-Lir" secondAttribute="bottom" constant="30" id="fQG-r1-KEr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GJo-ug-cem" secondAttribute="bottom" constant="42" id="ZKD-M8-HOQ"/>
+                            <constraint firstItem="GJo-ug-cem" firstAttribute="top" secondItem="me9-BL-r7S" secondAttribute="bottom" constant="16" id="d6k-RZ-evh"/>
                             <constraint firstItem="JMc-ew-WGP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="261" id="gTY-Bm-NwU"/>
+                            <constraint firstItem="me9-BL-r7S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gkv-SZ-jFL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JMc-ew-WGP" secondAttribute="trailing" constant="161" id="zP0-c5-5Uc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="JMc-ew-WGP"/>
-                                <exclude reference="IRG-8m-Lir"/>
                                 <exclude reference="GNV-yo-KJk"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Uh7-27-aF9"/>
-                                <exclude reference="fQG-r1-KEr"/>
                                 <exclude reference="MCy-qw-Oza"/>
                                 <exclude reference="OCQ-Tp-tbL"/>
                                 <exclude reference="ZKB-wP-G5A"/>
                                 <exclude reference="gTY-Bm-NwU"/>
                                 <exclude reference="zP0-c5-5Uc"/>
                                 <exclude reference="Fsb-Xk-vhv"/>
-                                <exclude reference="2l6-2I-9im"/>
-                                <exclude reference="SzY-qd-5t8"/>
+                                <exclude reference="Uh7-27-aF9"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="JMc-ew-WGP"/>
-                                <include reference="IRG-8m-Lir"/>
                                 <include reference="GNV-yo-KJk"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Uh7-27-aF9"/>
-                                <include reference="fQG-r1-KEr"/>
                                 <include reference="MCy-qw-Oza"/>
                                 <include reference="OCQ-Tp-tbL"/>
                                 <exclude reference="ZKB-wP-G5A"/>
                                 <exclude reference="gTY-Bm-NwU"/>
                                 <exclude reference="zP0-c5-5Uc"/>
                                 <include reference="Fsb-Xk-vhv"/>
-                                <include reference="2l6-2I-9im"/>
-                                <include reference="SzY-qd-5t8"/>
+                                <exclude reference="Uh7-27-aF9"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="buttonScan" destination="IRG-8m-Lir" id="noM-0U-Kmu"/>
                         <outlet property="indicator" destination="JMc-ew-WGP" id="vrp-3P-N00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="336" y="293"/>
         </scene>
     </scenes>
 </document>

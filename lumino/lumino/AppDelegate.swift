@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (error != nil) {
                 print("Unable to connect with FCM. \(error)")
             } else {
-                let registrationToken = FIRInstanceID.instanceID().token()!
+                guard let registrationToken = FIRInstanceID.instanceID().token() else {
+                    return
+                }
                 print("registration token: \(registrationToken)")
                 self.registerNotificationToken(registrationToken)
                 print("Connected to FCM.")
@@ -104,13 +106,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let aps = userInfo["aps"]!
 //        let alert = aps["alert"]!!
-//        let body = alert["body"] as! String        
+//        let body = alert["body"] as! String
 //        let notification = UILocalNotification()
 //        notification.alertBody = body
 //        notification.fireDate = NSDate()
 //        notification.soundName = UILocalNotificationDefaultSoundName
 //        // notification.userInfo = ["notifyId": "ranking_update"]
 //        application.scheduleLocalNotification(notification)
+        
+        // TODO Bluetoothでメッセージを送信する
         
         completionHandler(UIBackgroundFetchResult.NoData)
     }
