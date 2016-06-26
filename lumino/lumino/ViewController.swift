@@ -15,6 +15,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
     private var centralManager: CBCentralManager!
     private var peripheralManager: CBPeripheralManager!
     private var peripheral: CBPeripheral?
+    private var characteristic: CBCharacteristic?
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var buttonScan: UIButton!
@@ -34,7 +35,21 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("deviceId: \(deviceId)")
-        // registerNotificationToken("123456")
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.receivedMessage), name: "receivedMessage", object: nil)
+    }
+    
+    func receivedMessage(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let message = userInfo["message"]! as! String
+        print("received message: \(message)")
+        writeMessage(message)
+    }
+    
+    private func writeMessage(message: String) {
+        if (peripheral != nil && characteristic != nil) {
+            let data = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)
+            peripheral!.writeValue(data!, forCharacteristic: characteristic!, type: CBCharacteristicWriteType.WithResponse)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,8 +133,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
         print("Found \(characteristics!.count) characteristics! : \(characteristics)")
         for characteristic in characteristics! {
             if (characteristic.UUID.isEqual(CBUUID(string: "C8AF1B19-BCEA-40EC-9B3C-D7992E4E131B"))) {
-                let data = "hello".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)
-                peripheral.writeValue(data!, forCharacteristic: characteristic, type: CBCharacteristicWriteType.WithResponse)
+                self.characteristic = characteristic
+                writeMessage("hello")
             }
         }
     }
