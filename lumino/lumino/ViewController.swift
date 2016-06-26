@@ -17,11 +17,10 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
     private var peripheral: CBPeripheral?
     private var characteristic: CBCharacteristic?
     
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var textDeviceId: UITextView!
     @IBOutlet weak var buttonScan: UIButton!
     
     @IBAction func onTouchButtonScan(sender: AnyObject) {
-        print("onTouchButtonScan")
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -33,12 +32,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralMa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print("deviceId: \(deviceId)")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.receivedMessage), name: "receivedMessage", object: nil)
+        textDeviceId.text = deviceId
+
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onReceiveMessage), name: "onReceiveMessage", object: nil)
     }
     
-    func receivedMessage(notification: NSNotification) {
+    func onReceiveMessage(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let message = userInfo["message"]! as! String
         print("received message: \(message)")

@@ -21,16 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        if #available(iOS 8.0, *) {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            // Fallback
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         FIRApp.configure()
         
@@ -41,19 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()!
-        print("InstanceID token: \(refreshedToken)")
+        let registrationToken = FIRInstanceID.instanceID().token()!
+        print("registration token: \(registrationToken)")
         
         // Connect to FCM since connection may have failed when attempted before having a token.
         connectToFcm()
     }
     
-    func connectToFcm() {
+    private func connectToFcm() {
         FIRMessaging.messaging().connectWithCompletion { (error) in
             if (error != nil) {
                 print("Unable to connect with FCM. \(error)")
             } else {
                 guard let registrationToken = FIRInstanceID.instanceID().token() else {
+                    print("not found InstanceID token")
                     return
                 }
                 print("registration token: \(registrationToken)")
@@ -104,11 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print full message.
         print("%@", userInfo)
         
-        let aps = userInfo["aps"]!
-        let alert = aps["alert"]!!
-        let body = alert["body"] as! String
-
-        NSNotificationCenter.defaultCenter().postNotificationName("receivedMessage", object: nil, userInfo: ["message": body])
+        // メッセージを受信したので伝える
+        let message = userInfo["aps"]!["alert"]!!["body"] as! String
+        NSNotificationCenter.defaultCenter().postNotificationName("onReceiveMessage", object: nil, userInfo: ["message": message])
         
         completionHandler(UIBackgroundFetchResult.NoData)
     }
