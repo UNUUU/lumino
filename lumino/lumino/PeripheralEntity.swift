@@ -10,10 +10,12 @@ import Foundation
 import CoreBluetooth
 
 class PeripheralEntity {
-    let peripheral: CBPeripheral
-    let localName: String?
+    var uuid: String
+    var peripheral: CBPeripheral
+    var localName: String
     
-    init(peripheral: CBPeripheral, localName: String?) {
+    init(uuid: String, peripheral: CBPeripheral, localName: String) {
+        self.uuid = uuid
         self.peripheral = peripheral
         self.localName = localName
     }

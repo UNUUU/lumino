@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,20 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-ug-cem">
-                                <rect key="frame" x="277" y="528" width="46" height="30"/>
-                                <state key="normal" title="Scan"/>
-                                <connections>
-                                    <action selector="onTouchButtonScan:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FIK-wl-3cA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me9-BL-r7S">
-                                <rect key="frame" x="251" y="482" width="98" height="30"/>
-                                <state key="normal" title="Peripheral"/>
-                                <connections>
-                                    <action selector="onTouchPeripheral:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vdp-JS-LDF"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="1234-5678-91011-1213" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5w0-PX-25V">
                                 <rect key="frame" x="43" y="53" width="514" height="21.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,6 +87,16 @@
                                     </mask>
                                 </variation>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJz-gc-LVH">
+                                <rect key="frame" x="207" y="313" width="187" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gJz-gc-LVH" secondAttribute="height" multiplier="187:30" id="Glt-hQ-JZH"/>
+                                </constraints>
+                                <state key="normal" title="Waooooo"/>
+                                <connections>
+                                    <action selector="onTouchButtonWaooooo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lh4-SS-EU4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -108,14 +104,14 @@
                             <constraint firstItem="5w0-PX-25V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="73" id="1vL-Fq-InG"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4XS-Lw-ETn"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="79" id="4oz-ha-Mmf"/>
+                            <constraint firstItem="gJz-gc-LVH" firstAttribute="top" secondItem="5w0-PX-25V" secondAttribute="bottom" constant="238.5" id="9dk-6h-RaR"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="BOc-qU-uCB"/>
+                            <constraint firstItem="gJz-gc-LVH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DY2-BT-wbT"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="J8X-Nh-aeC"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JbK-Tm-b5R"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="Sam-0C-G9M">
                                 <variation key="widthClass=compact" constant="36"/>
                             </constraint>
-                            <constraint firstItem="GJo-ug-cem" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ws8-za-8nD"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GJo-ug-cem" secondAttribute="bottom" constant="42" id="ZKD-M8-HOQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5w0-PX-25V" secondAttribute="trailing" constant="220" id="aqR-0P-TAr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5w0-PX-25V" secondAttribute="trailing" constant="38" id="bZ8-4d-4Y5">
                                 <variation key="widthClass=compact" constant="20"/>
@@ -123,9 +119,7 @@
                             <constraint firstItem="5w0-PX-25V" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="cfi-4p-s2g">
                                 <variation key="widthClass=compact" constant="32"/>
                             </constraint>
-                            <constraint firstItem="GJo-ug-cem" firstAttribute="top" secondItem="me9-BL-r7S" secondAttribute="bottom" constant="16" id="d6k-RZ-evh"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHj-aK-cbI"/>
-                            <constraint firstItem="me9-BL-r7S" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gkv-SZ-jFL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5w0-PX-25V" secondAttribute="trailing" constant="20" id="mtd-zZ-09l"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="pS5-2I-mea"/>
                             <constraint firstItem="5w0-PX-25V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="pnL-4h-gek">
@@ -196,18 +190,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDs-zu-tOC">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="gbw-MH-fVV">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" rowHeight="60" id="gbw-MH-fVV">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gbw-MH-fVV" id="735-x0-90v">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Bluetooth name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffp-I2-fFa">
-                                                    <rect key="frame" x="0.0" y="8" width="600" height="33"/>
+                                                    <rect key="frame" x="0.0" y="14" width="600" height="34.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -224,6 +218,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="EDs-zu-tOC" id="g05-he-3bJ"/>
                     </connections>
