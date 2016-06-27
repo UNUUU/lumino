@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class BluetoothListViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate , CBPeripheralDelegate {
+class BluetoothListViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     private var peripheralList: [PeripheralEntity] = []
 
@@ -162,10 +162,16 @@ class BluetoothListViewController: UIViewController , UITableViewDataSource, UIT
                     didWriteValueForCharacteristic characteristic: CBCharacteristic,
                                                    error: NSError?)
     {
+        let notification = UILocalNotification()
         if let error = error {
+            notification.alertBody = "送信に失敗しました"
             print("Write失敗...error: \(error)")
-            return
+        } else {
+            notification.alertBody = "送信に成功しました"
+            print("Write成功！")
         }
-        
+        notification.fireDate = NSDate()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 }
