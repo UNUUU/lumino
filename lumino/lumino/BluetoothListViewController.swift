@@ -9,13 +9,14 @@
 import UIKit
 import CoreBluetooth
 
-class BluetoothListViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     
-    private var peripheralList: [PeripheralEntity] = []
-
     private var centralManager: CBCentralManager!
     
-    @IBOutlet weak var tableView: UITableView!
+    private let SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
+    private let CHARACTERISTIC_WRITE_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
+    
+    @IBOutlet weak var textProgress: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class BluetoothListViewController: UIViewController , UITableViewDataSource, UIT
             break
         case .PoweredOn:
             print("powered on")
-            // let serviceUUIDs:[CBUUID] = [CBUUID(string: "lumino")]
+            textProgress.text = "Peripheralの検索中"
             centralManager.scanForPeripheralsWithServices(nil, options: nil)
             break
         case .Resetting:
@@ -60,52 +61,18 @@ class BluetoothListViewController: UIViewController , UITableViewDataSource, UIT
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        centralManager.stopScan()
+
         print("peripheral: \(peripheral)")
         print("name: \(peripheral.name)")
         print("UUID: \(peripheral.identifier.UUIDString)")
         print("advertisementData: \(advertisementData)")
         print("RSSI: \(RSSI)")
         
-        let uuid = peripheral.identifier.UUIDString
-        let localName = advertisementData["kCBAdvDataLocalName"] as! String? ?? ""
-        
-        var isAlreadyContainPeripheral = false
-        peripheralList.forEach { peripheralEntity in
-            if (peripheralEntity.uuid == uuid) {
-                peripheralEntity.peripheral = peripheral
-                peripheralEntity.localName = localName
-                isAlreadyContainPeripheral = true
-                return
-            }
+        if (peripheral.identifier.UUIDString == SERVICE_UUID) {
+            textProgress.text = "Peripheralへの接続中"
+            centralManager.connectPeripheral(peripheral, options: nil)
         }
-        
-        if (!isAlreadyContainPeripheral) {
-            peripheralList.append(PeripheralEntity(uuid: uuid, peripheral: peripheral, localName: localName))
-        }
-
-        tableView.reloadData()
-    }
-    
-    func tableView(table: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return peripheralList.count
-    }
-    
-    func tableView(table: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // tableCell の ID で UITableViewCell のインスタンスを生成
-        let cell = table.dequeueReusableCellWithIdentifier("tableCell", forIndexPath: indexPath)
-        let textView = table.viewWithTag(1) as! UITextView
-        let peripheralEntity = peripheralList[indexPath.row]
-        textView.text = "\(peripheralEntity.peripheral.name) (\(peripheralEntity.localName))"
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let peripheralEntity = peripheralList[indexPath.row]
-        centralManager.stopScan()
-//        navigateToMainViewController(peripheralEntity)
-        centralManager.connectPeripheral(peripheralEntity.peripheral, options: nil)
     }
     
     func navigateToMainViewController(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
@@ -115,47 +82,87 @@ class BluetoothListViewController: UIViewController , UITableViewDataSource, UIT
         self.presentViewController(mainViewController, animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60.0
-    }
-    
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        print("connection failed")
+        let alert: UIAlertController = UIAlertController(title: "接続に失敗", message: "Peripheralへの接続に失敗しました", preferredStyle:  UIAlertControllerStyle.Alert)
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+            self.textProgress.text = "Peripheralの検索中"
+            self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+        })
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-        print("connection success!")
-        
+        textProgress.text = "サービスの検索中"
         peripheral.delegate = self
-        peripheral.discoverServices(nil)
+        peripheral.discoverServices([CBUUID(string: self.SERVICE_UUID)])
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
-        if let error = error {
-            print("error: \(error)")
+        if error != nil {
+            let alert: UIAlertController = UIAlertController(title: "検索に失敗", message: "Serviceの検索に失敗しました", preferredStyle:  UIAlertControllerStyle.Alert)
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                self.textProgress.text = "Peripheralの検索中"
+                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+            })
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
             return
         }
         
-        let services = peripheral.services
-        print("Found \(services!.count) services! :\(services)")
-        
-//        for service in services! {
-//            if (service.UUID.isEqual(CBUUID(string: "FEE3394A-8122-4BED-8510-59FB1C09F96F"))) {
-            
-//            }
-//        }
-        peripheral.discoverCharacteristics(nil, forService: services![0])
+        // 今回は特注なので1つしかサービスがない前提で進める
+        textProgress.text = "Characteristicの検索中"
+        peripheral.discoverCharacteristics([CBUUID(string: CHARACTERISTIC_WRITE_UUID)], forService: peripheral.services![0])
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        if let error = error {
-            print("error: \(error)")
+        if error != nil {
+            let alert: UIAlertController = UIAlertController(title: "検索に失敗", message: "Characteristicの検索に失敗しました", preferredStyle:  UIAlertControllerStyle.Alert)
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                self.textProgress.text = "Peripheralの検索中"
+                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+            })
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
             return
         }
         
         let characteristics = service.characteristics
         print("Found \(characteristics!.count) characteristics! : \(characteristics)")
-        navigateToMainViewController(peripheral, characteristic: characteristics![0])
+        var characteristic: CBCharacteristic? = nil
+        characteristics?.filter { characteristic in
+            characteristic.properties.rawValue & CBCharacteristicProperties.Write.rawValue != 0
+        }.forEach {
+            characteristic = $0
+            return
+        }
+        
+        guard let writeCharacteristic = characteristic else {
+            let alert: UIAlertController = UIAlertController(title: "アラート表示", message: "書き込み権限があるcharacteristicを見つけられませんでした", preferredStyle:  UIAlertControllerStyle.Alert)
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                self.textProgress.text = "Peripheralの検索中"
+                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+            })
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        textProgress.text = "接続完了"
+        navigateToMainViewController(peripheral, characteristic: writeCharacteristic)
     }
     
     func peripheral(peripheral: CBPeripheral,

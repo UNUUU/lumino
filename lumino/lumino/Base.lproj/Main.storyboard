@@ -189,38 +189,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDs-zu-tOC">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-vc-g8d">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-91-ODf">
+                                <rect key="frame" x="180" y="338" width="240" height="113"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" rowHeight="60" id="gbw-MH-fVV">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gbw-MH-fVV" id="735-x0-90v">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Bluetooth name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffp-I2-fFa">
-                                                    <rect key="frame" x="0.0" y="14" width="600" height="34.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Hzc-i7-gxf" id="d0K-dO-KMw"/>
-                                    <outlet property="delegate" destination="Hzc-i7-gxf" id="TNW-KW-iB7"/>
-                                </connections>
-                            </tableView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="KZz-du-hX2"/>
+                                    <constraint firstAttribute="height" constant="113" id="zqe-oc-XRR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3oa-vc-g8d" firstAttribute="centerX" secondItem="523-AX-YCW" secondAttribute="centerX" id="ATd-WW-gC4"/>
+                            <constraint firstItem="oQi-91-ODf" firstAttribute="centerX" secondItem="523-AX-YCW" secondAttribute="centerX" id="CvN-yb-Vb4"/>
+                            <constraint firstItem="oQi-91-ODf" firstAttribute="top" secondItem="3oa-vc-g8d" secondAttribute="bottom" constant="20" id="uB4-v4-W5F"/>
+                            <constraint firstItem="3oa-vc-g8d" firstAttribute="centerY" secondItem="523-AX-YCW" secondAttribute="centerY" id="wF4-ar-ebt"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="EDs-zu-tOC" id="g05-he-3bJ"/>
+                        <outlet property="textProgress" destination="oQi-91-ODf" id="Q4l-2j-cUi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbe-Aw-Hvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
