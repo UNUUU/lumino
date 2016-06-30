@@ -143,6 +143,20 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
             return
         }
         
+        if (service.characteristics!.isEmpty) {
+            let alert: UIAlertController = UIAlertController(title: "検索に失敗", message: "Characteristicが見つかりませんでした", preferredStyle:  UIAlertControllerStyle.Alert)
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                self.textProgress.text = "Peripheralの検索中"
+                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+            })
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
         let characteristics = service.characteristics
         print("Found \(characteristics!.count) characteristics! : \(characteristics)")
         var characteristic: CBCharacteristic? = nil
