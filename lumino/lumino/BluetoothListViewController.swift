@@ -12,23 +12,16 @@ import CoreBluetooth
 class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     private var centralManager: CBCentralManager!
+    private var peripheral: CBPeripheral!
     
-    private let SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
-    private let CHARACTERISTIC_WRITE_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
+    private let SERVICE_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
+    private let CHARACTERISTIC_WRITE_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
     
     @IBOutlet weak var textProgress: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
         centralManager = CBCentralManager(delegate: self, queue: nil)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        centralManager.stopScan()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,16 +54,16 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        centralManager.stopScan()
-
         print("peripheral: \(peripheral)")
         print("name: \(peripheral.name)")
         print("UUID: \(peripheral.identifier.UUIDString)")
         print("advertisementData: \(advertisementData)")
         print("RSSI: \(RSSI)")
-        
-        if (peripheral.identifier.UUIDString == SERVICE_UUID) {
+
+        if (SERVICE_UUID == peripheral.identifier.UUIDString) {
+            centralManager.stopScan()
             textProgress.text = "Peripheralへの接続中"
+            self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
         }
     }
@@ -104,6 +97,20 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         if error != nil {
             let alert: UIAlertController = UIAlertController(title: "検索に失敗", message: "Serviceの検索に失敗しました", preferredStyle:  UIAlertControllerStyle.Alert)
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                self.textProgress.text = "Peripheralの検索中"
+                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+            })
+            alert.addAction(cancelAction)
+            presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if (peripheral.services!.isEmpty) {
+            let alert: UIAlertController = UIAlertController(title: "検索に失敗", message: "Serviceが見つかりませんでした", preferredStyle:  UIAlertControllerStyle.Alert)
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
                 (action: UIAlertAction!) -> Void in
