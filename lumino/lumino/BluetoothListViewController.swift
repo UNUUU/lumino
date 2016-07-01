@@ -15,10 +15,10 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     private var peripheral: CBPeripheral?
     private var characteristic: CBCharacteristic?
     
-    private let PERIPHERAL_UUID = "F94FBB25-D809-6BFC-911A-9D533ACC256F"
-    // private let PERIPHERAL_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
+    // private let PERIPHERAL_UUID = "F94FBB25-D809-6BFC-911A-9D533ACC256F"
+    private let PERIPHERAL_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
     private let SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
-    private let CHARACTERISTIC_WRITE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
+    private let CHARACTERISTIC_WRITE_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
     
     @IBOutlet weak var textProgress: UITextView!
     
