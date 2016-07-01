@@ -9,13 +9,16 @@
 import UIKit
 import CoreBluetooth
 
-class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, CBPeripheralDelegate {
     
     private var centralManager: CBCentralManager!
-    private var peripheral: CBPeripheral!
+    private var peripheral: CBPeripheral?
+    private var characteristic: CBCharacteristic?
     
-    private let SERVICE_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
-    private let CHARACTERISTIC_WRITE_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
+    private let PERIPHERAL_UUID = "F94FBB25-D809-6BFC-911A-9D533ACC256F"
+    // private let PERIPHERAL_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
+    private let SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
+    private let CHARACTERISTIC_WRITE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
     
     @IBOutlet weak var textProgress: UITextView!
     
@@ -60,19 +63,12 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
         print("advertisementData: \(advertisementData)")
         print("RSSI: \(RSSI)")
 
-        if (SERVICE_UUID == peripheral.identifier.UUIDString) {
+        if (PERIPHERAL_UUID == peripheral.identifier.UUIDString) {
             centralManager.stopScan()
             textProgress.text = "Peripheralへの接続中"
             self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
         }
-    }
-    
-    func navigateToMainViewController(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
-        let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! ViewController
-        mainViewController.peripheral = peripheral
-        mainViewController.characteristic = characteristic
-        self.presentViewController(mainViewController, animated: true, completion: nil)
     }
     
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
@@ -91,7 +87,12 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         textProgress.text = "サービスの検索中"
         peripheral.delegate = self
-        peripheral.discoverServices([CBUUID(string: self.SERVICE_UUID)])
+        peripheral.discoverServices(nil)
+    }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        self.peripheral = nil
+        self.characteristic = nil
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
@@ -123,9 +124,10 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
             return
         }
         
-        // 今回は特注なので1つしかサービスがない前提で進める
-        textProgress.text = "Characteristicの検索中"
-        peripheral.discoverCharacteristics([CBUUID(string: CHARACTERISTIC_WRITE_UUID)], forService: peripheral.services![0])
+        for service in peripheral.services! {
+            textProgress.text = "Characteristicの検索中"
+            peripheral.discoverCharacteristics(nil, forService: service)
+        }
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
@@ -157,33 +159,16 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
             return
         }
         
-        let characteristics = service.characteristics
-        print("Found \(characteristics!.count) characteristics! : \(characteristics)")
-        var characteristic: CBCharacteristic? = nil
-        characteristics?.filter { characteristic in
-            characteristic.properties.rawValue & CBCharacteristicProperties.Write.rawValue != 0
-        }.forEach {
-            characteristic = $0
-            return
+        for characteristic in service.characteristics! {
+            self.textProgress.text = "\(characteristic.UUID.UUIDString)\n\(self.textProgress.text)"
+            if (characteristic.UUID.UUIDString == CHARACTERISTIC_WRITE_UUID) {
+                self.peripheral = peripheral
+                self.characteristic = characteristic
+                textProgress.text = "接続完了"
+                navigateToMainViewController()
+                return
+            }
         }
-        
-        guard let writeCharacteristic = characteristic else {
-            let alert: UIAlertController = UIAlertController(title: "アラート表示", message: "書き込み権限があるcharacteristicを見つけられませんでした", preferredStyle:  UIAlertControllerStyle.Alert)
-            // キャンセルボタン
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-                self.textProgress.text = "Peripheralの検索中"
-                self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
-            })
-            alert.addAction(cancelAction)
-            presentViewController(alert, animated: true, completion: nil)
-            return
-        }
-        
-        textProgress.text = "接続完了"
-        navigateToMainViewController(peripheral, characteristic: writeCharacteristic)
     }
     
     func peripheral(peripheral: CBPeripheral,
@@ -201,5 +186,12 @@ class BluetoothListViewController: UIViewController , UITableViewDelegate, CBCen
         notification.fireDate = NSDate()
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func navigateToMainViewController() {
+        let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! ViewController
+        mainViewController.peripheral = self.peripheral
+        mainViewController.characteristic = self.characteristic
+        self.presentViewController(mainViewController, animated: true, completion: nil)
     }
 }
