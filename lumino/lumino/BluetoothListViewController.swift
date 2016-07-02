@@ -18,7 +18,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     // private let PERIPHERAL_UUID = "F94FBB25-D809-6BFC-911A-9D533ACC256F"
     private let PERIPHERAL_UUID = "3D35AA18-ACC3-D0D5-1372-DD84E2B4A63F"
     private let SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
-    private let CHARACTERISTIC_WRITE_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
+    private let CHARACTERISTIC_WRITE_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
     
     @IBOutlet weak var textProgress: UITextView!
     
@@ -34,37 +34,39 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     func centralManagerDidUpdateState(central: CBCentralManager) {
         switch central.state {
         case .PoweredOff:
-            print("powered off")
+            Logger.log("powered off")
             break
         case .PoweredOn:
-            print("powered on")
+            Logger.log("powered on")
+            Logger.log("Peripheralの検索中")
             textProgress.text = "Peripheralの検索中"
             centralManager.scanForPeripheralsWithServices(nil, options: nil)
             break
         case .Resetting:
-            print("resetting")
+            Logger.log("resetting")
             break
         case .Unauthorized:
-            print("unauthorized")
+            Logger.log("unauthorized")
             break
         case .Unsupported:
-            print("unsupported")
+            Logger.log("unsupported")
             break
         default:
-            print("unknown")
+            Logger.log("unknown")
             break
         }
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        print("peripheral: \(peripheral)")
-        print("name: \(peripheral.name)")
-        print("UUID: \(peripheral.identifier.UUIDString)")
-        print("advertisementData: \(advertisementData)")
-        print("RSSI: \(RSSI)")
+        Logger.log("peripheral: \(peripheral)")
+        Logger.log("name: \(peripheral.name)")
+        Logger.log("UUID: \(peripheral.identifier.UUIDString)")
+        Logger.log("advertisementData: \(advertisementData)")
+        Logger.log("RSSI: \(RSSI)")
 
         if (PERIPHERAL_UUID == peripheral.identifier.UUIDString) {
             centralManager.stopScan()
+            Logger.log("Peripheralへの接続中")
             textProgress.text = "Peripheralへの接続中"
             self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
@@ -76,7 +78,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
             (action: UIAlertAction!) -> Void in
-            print("Cancel")
+            Logger.log("Cancel")
+            Logger.log("Peripheralの検索中")
             self.textProgress.text = "Peripheralの検索中"
             self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
         })
@@ -85,6 +88,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+        Logger.log("サービスの検索中")
         textProgress.text = "サービスの検索中"
         peripheral.delegate = self
         peripheral.discoverServices(nil)
@@ -101,7 +105,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("Cancel")
+                Logger.log("Cancel")
+                Logger.log("Peripheralの検索中")
                 self.textProgress.text = "Peripheralの検索中"
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
@@ -115,7 +120,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("Cancel")
+                Logger.log("Cancel")
+                Logger.log("Peripheralの検索中")
                 self.textProgress.text = "Peripheralの検索中"
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
@@ -125,6 +131,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         }
         
         for service in peripheral.services! {
+            Logger.log("Service: \(service.UUID.UUIDString)")
+            Logger.log("Characteristicの検索中")
             textProgress.text = "Characteristicの検索中"
             peripheral.discoverCharacteristics(nil, forService: service)
         }
@@ -136,7 +144,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("Cancel")
+                Logger.log("Cancel")
+                Logger.log("Peripheralの検索中")
                 self.textProgress.text = "Peripheralの検索中"
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
@@ -150,7 +159,8 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
                 (action: UIAlertAction!) -> Void in
-                print("Cancel")
+                Logger.log("Cancel")
+                Logger.log("Peripheralの検索中")
                 self.textProgress.text = "Peripheralの検索中"
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
@@ -160,10 +170,12 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         }
         
         for characteristic in service.characteristics! {
-            self.textProgress.text = "\(characteristic.UUID.UUIDString)\n\(self.textProgress.text)"
+            Logger.log("Characteristic: \(characteristic.UUID.UUIDString)")
+            Logger.log("Permission:  \(characteristic.properties.rawValue)")
             if (characteristic.UUID.UUIDString == CHARACTERISTIC_WRITE_UUID) {
                 self.peripheral = peripheral
                 self.characteristic = characteristic
+                Logger.log("接続完了")
                 textProgress.text = "接続完了"
                 navigateToMainViewController()
                 return
@@ -171,17 +183,14 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         }
     }
     
-    func peripheral(peripheral: CBPeripheral,
-                    didWriteValueForCharacteristic characteristic: CBCharacteristic,
-                                                   error: NSError?)
-    {
+    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         let notification = UILocalNotification()
         if let error = error {
             notification.alertBody = "送信に失敗しました"
-            print("Write失敗...error: \(error)")
+            Logger.log("Write失敗...error: \(error)")
         } else {
             notification.alertBody = "送信に成功しました"
-            print("Write成功！")
+            Logger.log("Write成功！")
         }
         notification.fireDate = NSDate()
         notification.soundName = UILocalNotificationDefaultSoundName

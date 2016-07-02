@@ -8,4 +8,5 @@ target 'lumino' do
   # Pods for lumino
   pod 'Alamofire', '~> 3.4'
   pod 'Firebase/Messaging'
+  pod 'Antenna'
 end

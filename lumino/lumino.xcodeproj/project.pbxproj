@@ -15,6 +15,7 @@
 		EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E631D1E170800AB98E8 /* LaunchScreen.storyboard */; };
 		EC1F4EC91D26A55800326C59 /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F4EC81D26A55800326C59 /* PeripheralViewController.swift */; };
 		EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */; };
+		ECA1ABF41D278A52003E8865 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ABF31D278A52003E8865 /* Logger.swift */; };
 		ECDB84371D20349C007B77A6 /* BluetoothListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB84361D20349C007B77A6 /* BluetoothListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +30,9 @@
 		EC1C8E641D1E170800AB98E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1C8E661D1E170800AB98E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC1F4EC81D26A55800326C59 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
+		EC1F4ECD1D26CF4100326C59 /* lumino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lumino-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ECA1ABF31D278A52003E8865 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		ECDB84361D20349C007B77A6 /* BluetoothListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothListViewController.swift; sourceTree = "<group>"; };
 		F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,6 +96,8 @@
 				EC1C8E631D1E170800AB98E8 /* LaunchScreen.storyboard */,
 				EC1C8E661D1E170800AB98E8 /* Info.plist */,
 				EC1F4EC81D26A55800326C59 /* PeripheralViewController.swift */,
+				EC1F4ECD1D26CF4100326C59 /* lumino-Bridging-Header.h */,
+				ECA1ABF31D278A52003E8865 /* Logger.swift */,
 			);
 			path = lumino;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA1ABF41D278A52003E8865 /* Logger.swift in Sources */,
 				EC1F4EC91D26A55800326C59 /* PeripheralViewController.swift in Sources */,
 				ECDB84371D20349C007B77A6 /* BluetoothListViewController.swift in Sources */,
 				EC1C8E5D1D1E170800AB98E8 /* ViewController.swift in Sources */,
@@ -352,11 +358,14 @@
 			baseConfigurationReference = 0D8286AC3E6AB6B368BE4B3C /* Pods-lumino.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = lumino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				SWIFT_OBJC_BRIDGING_HEADER = "lumino/lumino-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -365,6 +374,7 @@
 			baseConfigurationReference = 977486CCC223D299B4434EFB /* Pods-lumino.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				INFOPLIST_FILE = lumino/Info.plist;
@@ -372,6 +382,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				SWIFT_OBJC_BRIDGING_HEADER = "lumino/lumino-Bridging-Header.h";
 			};
 			name = Release;
 		};

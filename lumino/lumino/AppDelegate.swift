@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Firebase
 import FirebaseMessaging
+import Antenna
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        
+        Antenna.sharedLogger().addChannelWithURL(NSURL(string: "https://lumino-logger.herokuapp.com"), method:"LOG")
         
         FIRApp.configure()
         

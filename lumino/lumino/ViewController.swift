@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var textDeviceId: UITextView!
     
     @IBAction func onTouchButtonWaooooo(sender: AnyObject) {
-        writeMessage("Waooooo")
+        writeMessage("DWaooooo")
     }
 
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         if (peripheral != nil && characteristic != nil) {
             print("wrote message \(message)")
             let data = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)
-            peripheral!.writeValue(data!, forCharacteristic: characteristic!, type: CBCharacteristicWriteType.WithResponse)
+            peripheral!.writeValue(data!, forCharacteristic: characteristic!, type: CBCharacteristicWriteType.WithoutResponse)
         }
     }
 }
