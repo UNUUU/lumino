@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var textDeviceId: UITextView!
     
-    @IBAction func onTouchButtonWaooooo(sender: AnyObject) {
-        writeMessage("DWaooooo")
+    @IBAction func onTouchButtonNike(sender: AnyObject) {
+        writeMessage("DNike")
     }
 
     override func viewDidLoad() {

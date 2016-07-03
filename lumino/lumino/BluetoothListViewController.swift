@@ -39,7 +39,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         case .PoweredOn:
             Logger.log("powered on")
             Logger.log("Peripheralの検索中")
-            textProgress.text = "Peripheralの検索中"
+            textProgress.text = "scanning peripherals..."
             centralManager.scanForPeripheralsWithServices(nil, options: nil)
             break
         case .Resetting:
@@ -67,7 +67,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         if (PERIPHERAL_UUID == peripheral.identifier.UUIDString) {
             centralManager.stopScan()
             Logger.log("Peripheralへの接続中")
-            textProgress.text = "Peripheralへの接続中"
+            textProgress.text = "connecting peripheral..."
             self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
         }
@@ -80,7 +80,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
             (action: UIAlertAction!) -> Void in
             Logger.log("Cancel")
             Logger.log("Peripheralの検索中")
-            self.textProgress.text = "Peripheralの検索中"
+            self.textProgress.text = "scanning peripherals..."
             self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
         })
         alert.addAction(cancelAction)
@@ -89,7 +89,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         Logger.log("サービスの検索中")
-        textProgress.text = "サービスの検索中"
+        textProgress.text = "scanning services..."
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
@@ -107,7 +107,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
-                self.textProgress.text = "Peripheralの検索中"
+                self.textProgress.text = "scanning peripherals..."
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -122,7 +122,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
-                self.textProgress.text = "Peripheralの検索中"
+                self.textProgress.text = "scanning peripherals..."
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -133,7 +133,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         for service in peripheral.services! {
             Logger.log("Service: \(service.UUID.UUIDString)")
             Logger.log("Characteristicの検索中")
-            textProgress.text = "Characteristicの検索中"
+            textProgress.text = "scanning characteristics..."
             peripheral.discoverCharacteristics(nil, forService: service)
         }
     }
@@ -146,7 +146,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
-                self.textProgress.text = "Peripheralの検索中"
+                self.textProgress.text = "scanning peripherals..."
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -161,7 +161,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
-                self.textProgress.text = "Peripheralの検索中"
+                self.textProgress.text = "scanning peripherals..."
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -176,7 +176,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
                 self.peripheral = peripheral
                 self.characteristic = characteristic
                 Logger.log("接続完了")
-                textProgress.text = "接続完了"
+                textProgress.text = "connection completed"
                 navigateToMainViewController()
                 return
             }
