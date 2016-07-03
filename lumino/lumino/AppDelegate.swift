@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSThread.sleepForTimeInterval(1.0)
 
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyboard: UIStoryboard = UIStoryboard(name: "Scan", bundle: NSBundle.mainBundle())
         let mainViewController: UIViewController = storyboard.instantiateInitialViewController()! as UIViewController
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="J12-k8-PnO">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Scan View Controller-->
+        <scene sceneID="gzj-wx-Ne7">
+            <objects>
+                <viewController id="J12-k8-PnO" customClass="ScanViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="78H-lw-i2d"/>
+                        <viewControllerLayoutGuide type="bottom" id="gbO-z2-GAS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PSH-QU-ga5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage-700-568.png" translatesAutoresizingMaskIntoConstraints="NO" id="Erq-2U-OrZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7of-HY-8C5">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="scanning devices..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-Nd-Ojh">
+                                <rect key="frame" x="40" y="322" width="240" height="113"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="113" id="3Jd-qe-8E7"/>
+                                    <constraint firstAttribute="height" constant="40" id="6OI-Sd-IWU"/>
+                                    <constraint firstAttribute="width" constant="240" id="RKU-3f-1Co"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6OI-Sd-IWU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="6OI-Sd-IWU"/>
+                                        <exclude reference="3Jd-qe-8E7"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="scZ-Nd-Ojh" firstAttribute="top" secondItem="78H-lw-i2d" secondAttribute="bottom" constant="274" id="B3Q-Mq-Mrg"/>
+                            <constraint firstItem="7of-HY-8C5" firstAttribute="centerX" secondItem="PSH-QU-ga5" secondAttribute="centerX" id="GDE-vh-d5o"/>
+                            <constraint firstItem="scZ-Nd-Ojh" firstAttribute="centerX" secondItem="PSH-QU-ga5" secondAttribute="centerX" id="MBe-B7-0pL"/>
+                            <constraint firstItem="7of-HY-8C5" firstAttribute="centerY" secondItem="PSH-QU-ga5" secondAttribute="centerY" id="Vur-t7-mh4"/>
+                            <constraint firstItem="scZ-Nd-Ojh" firstAttribute="top" secondItem="78H-lw-i2d" secondAttribute="bottom" constant="277" id="WJ0-Ed-Qmd"/>
+                            <constraint firstItem="scZ-Nd-Ojh" firstAttribute="top" secondItem="7of-HY-8C5" secondAttribute="bottom" constant="20" id="ZEz-is-4Yp"/>
+                            <constraint firstItem="scZ-Nd-Ojh" firstAttribute="top" secondItem="7of-HY-8C5" secondAttribute="bottom" id="plI-bt-Jas"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="B3Q-Mq-Mrg"/>
+                                <exclude reference="plI-bt-Jas"/>
+                                <exclude reference="WJ0-Ed-Qmd"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="B3Q-Mq-Mrg"/>
+                                <exclude reference="plI-bt-Jas"/>
+                                <include reference="WJ0-Ed-Qmd"/>
+                                <exclude reference="ZEz-is-4Yp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="textProgress" destination="scZ-Nd-Ojh" id="qrH-Ka-BAj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QWO-hL-Zy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="151.5" y="290"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchImage-700-568.png" width="320" height="568"/>
+    </resources>
+</document>

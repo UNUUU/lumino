@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, CBPeripheralDelegate {
+class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeripheralDelegate {
     
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral?
@@ -63,7 +63,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
         Logger.log("UUID: \(peripheral.identifier.UUIDString)")
         Logger.log("advertisementData: \(advertisementData)")
         Logger.log("RSSI: \(RSSI)")
-
+        
         if (PERIPHERAL_UUID == peripheral.identifier.UUIDString) {
             centralManager.stopScan()
             Logger.log("Peripheralへの接続中")
@@ -198,7 +198,7 @@ class BluetoothListViewController: UIViewController , CBCentralManagerDelegate, 
     }
     
     func navigateToMainViewController() {
-        let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! ViewController
+        let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! MainViewController
         mainViewController.peripheral = self.peripheral
         mainViewController.characteristic = self.characteristic
         self.presentViewController(mainViewController, animated: true, completion: nil)

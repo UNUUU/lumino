@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import CoreBluetooth
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
     

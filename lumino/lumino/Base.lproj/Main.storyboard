@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hzc-i7-gxf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -12,14 +12,13 @@
             <string>Dosis-Light</string>
             <string>Dosis-Light</string>
             <string>Dosis-Light</string>
-            <string>Dosis-Light</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -305,129 +304,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="285"/>
-        </scene>
-        <!--Bluetooth List View Controller-->
-        <scene sceneID="Up2-c8-ymS">
-            <objects>
-                <viewController id="Hzc-i7-gxf" customClass="BluetoothListViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qQ2-De-GEk"/>
-                        <viewControllerLayoutGuide type="bottom" id="eiG-rF-kdC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="523-AX-YCW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage-700-568.png" translatesAutoresizingMaskIntoConstraints="NO" id="jF4-gh-pOy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-vc-g8d">
-                                <rect key="frame" x="142" y="265" width="37" height="37"/>
-                            </activityIndicatorView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="scanning devices..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQi-91-ODf">
-                                <rect key="frame" x="40" y="322" width="240" height="113"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="KZz-du-hX2"/>
-                                    <constraint firstAttribute="height" constant="40" id="ogw-Vj-KmL"/>
-                                    <constraint firstAttribute="height" constant="113" id="zqe-oc-XRR"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ogw-Vj-KmL"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="ogw-Vj-KmL"/>
-                                        <exclude reference="zqe-oc-XRR"/>
-                                    </mask>
-                                </variation>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3oa-vc-g8d" firstAttribute="centerX" secondItem="523-AX-YCW" secondAttribute="centerX" id="ATd-WW-gC4"/>
-                            <constraint firstItem="oQi-91-ODf" firstAttribute="centerX" secondItem="523-AX-YCW" secondAttribute="centerX" id="CvN-yb-Vb4"/>
-                            <constraint firstItem="oQi-91-ODf" firstAttribute="top" secondItem="qQ2-De-GEk" secondAttribute="bottom" constant="274" id="P51-nA-EGb"/>
-                            <constraint firstItem="oQi-91-ODf" firstAttribute="top" secondItem="3oa-vc-g8d" secondAttribute="bottom" id="fM8-H2-pSu"/>
-                            <constraint firstItem="oQi-91-ODf" firstAttribute="top" secondItem="qQ2-De-GEk" secondAttribute="bottom" constant="277" id="neP-eW-oMB"/>
-                            <constraint firstItem="oQi-91-ODf" firstAttribute="top" secondItem="3oa-vc-g8d" secondAttribute="bottom" constant="20" id="uB4-v4-W5F"/>
-                            <constraint firstItem="3oa-vc-g8d" firstAttribute="centerY" secondItem="523-AX-YCW" secondAttribute="centerY" id="wF4-ar-ebt"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="P51-nA-EGb"/>
-                                <exclude reference="fM8-H2-pSu"/>
-                                <exclude reference="neP-eW-oMB"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="P51-nA-EGb"/>
-                                <exclude reference="fM8-H2-pSu"/>
-                                <include reference="neP-eW-oMB"/>
-                                <exclude reference="uB4-v4-W5F"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="textProgress" destination="oQi-91-ODf" id="Q4l-2j-cUi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mbe-Aw-Hvw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="151.5" y="290"/>
-        </scene>
-        <!--Peripheral View Controller-->
-        <scene sceneID="D60-iN-Sr9">
-            <objects>
-                <viewController id="JSm-r8-xsZ" customClass="PeripheralViewController" customModule="lumino" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HRm-MS-Joi"/>
-                        <viewControllerLayoutGuide type="bottom" id="APj-Vo-DzK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dfY-xy-XY4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4tc-Qp-LaC">
-                                <rect key="frame" x="40" y="382" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="1jx-Kr-Vd4"/>
-                                    <constraint firstAttribute="width" constant="240" id="AgR-eo-TJH"/>
-                                    <constraint firstAttribute="width" secondItem="4tc-Qp-LaC" secondAttribute="height" multiplier="15:8" id="e68-HW-BR6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KT3-CO-igK">
-                                <rect key="frame" x="142" y="281" width="37" height="5"/>
-                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="KT3-CO-igK" firstAttribute="centerX" secondItem="dfY-xy-XY4" secondAttribute="centerX" id="Own-oR-FUD"/>
-                            <constraint firstItem="4tc-Qp-LaC" firstAttribute="centerX" secondItem="dfY-xy-XY4" secondAttribute="centerX" id="R1Q-ga-ilc"/>
-                            <constraint firstItem="APj-Vo-DzK" firstAttribute="top" secondItem="4tc-Qp-LaC" secondAttribute="bottom" constant="58" id="YFR-Tw-VYh"/>
-                            <constraint firstItem="KT3-CO-igK" firstAttribute="centerY" secondItem="dfY-xy-XY4" secondAttribute="centerY" id="hVR-Yn-4Zh"/>
-                            <constraint firstItem="4tc-Qp-LaC" firstAttribute="top" secondItem="KT3-CO-igK" secondAttribute="bottom" constant="96" id="pNj-WH-Kg3"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="textWroteData" destination="4tc-Qp-LaC" id="nhf-h8-AH7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LKX-Ek-Ymu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1817" y="285"/>
         </scene>
     </scenes>
     <resources>
