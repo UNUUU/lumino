@@ -183,20 +183,6 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        let notification = UILocalNotification()
-        if let error = error {
-            notification.alertBody = "送信に失敗しました"
-            Logger.log("Write失敗...error: \(error)")
-        } else {
-            notification.alertBody = "送信に成功しました"
-            Logger.log("Write成功！")
-        }
-        notification.fireDate = NSDate()
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
-    
     func navigateToMainViewController() {
         let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! MainViewController
         mainViewController.peripheral = self.peripheral

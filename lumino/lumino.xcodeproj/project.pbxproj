@@ -13,6 +13,8 @@
 		EC0DF3F81D29643500D5570A /* Scan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0DF3F71D29643500D5570A /* Scan.storyboard */; };
 		EC0DF3FA1D29644800D5570A /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DF3F91D29644800D5570A /* ScanViewController.swift */; };
 		EC0DF3FC1D29719C00D5570A /* DeviceUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DF3FB1D29719C00D5570A /* DeviceUtility.swift */; };
+		EC0DF3FE1D297D6700D5570A /* message.json in Resources */ = {isa = PBXBuildFile; fileRef = EC0DF3FD1D297D6700D5570A /* message.json */; };
+		EC0DF4001D29800F00D5570A /* MessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DF3FF1D29800F00D5570A /* MessageEntity.swift */; };
 		EC1C8E5B1D1E170800AB98E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */; };
 		EC1C8E5D1D1E170800AB98E8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C8E5C1D1E170800AB98E8 /* MainViewController.swift */; };
 		EC1C8E601D1E170800AB98E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1C8E5E1D1E170800AB98E8 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		EC0DF3F71D29643500D5570A /* Scan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Scan.storyboard; sourceTree = "<group>"; };
 		EC0DF3F91D29644800D5570A /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		EC0DF3FB1D29719C00D5570A /* DeviceUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtility.swift; sourceTree = "<group>"; };
+		EC0DF3FD1D297D6700D5570A /* message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message.json; sourceTree = "<group>"; };
+		EC0DF3FF1D29800F00D5570A /* MessageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEntity.swift; sourceTree = "<group>"; };
 		EC1C8E571D1E170800AB98E8 /* lumino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lumino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1C8E5A1D1E170800AB98E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1C8E5C1D1E170800AB98E8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				EC0DF3F71D29643500D5570A /* Scan.storyboard */,
 				EC0DF3F91D29644800D5570A /* ScanViewController.swift */,
 				EC0DF3FB1D29719C00D5570A /* DeviceUtility.swift */,
+				EC0DF3FD1D297D6700D5570A /* message.json */,
+				EC0DF3FF1D29800F00D5570A /* MessageEntity.swift */,
 			);
 			path = lumino;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 				EC1C8E651D1E170800AB98E8 /* LaunchScreen.storyboard in Resources */,
 				EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */,
 				EC0DF3F81D29643500D5570A /* Scan.storyboard in Resources */,
+				EC0DF3FE1D297D6700D5570A /* message.json in Resources */,
 				EC1C8E621D1E170800AB98E8 /* Assets.xcassets in Resources */,
 				EC0DF3F51D29584000D5570A /* Dosis-Light.ttf in Resources */,
 				EC4C26E81D2950EF00C79D3A /* title@2x.png in Resources */,
@@ -253,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC0DF4001D29800F00D5570A /* MessageEntity.swift in Sources */,
 				EC0DF3FC1D29719C00D5570A /* DeviceUtility.swift in Sources */,
 				ECA1ABF41D278A52003E8865 /* Logger.swift in Sources */,
 				EC1F4EC91D26A55800326C59 /* PeripheralViewController.swift in Sources */,

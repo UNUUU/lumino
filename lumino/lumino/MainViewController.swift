@@ -10,24 +10,46 @@ import UIKit
 import Alamofire
 import CoreBluetooth
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
     
-    @IBOutlet weak var textDeviceId: UITextView!
+    private var messageList: [MessageEntity] = []
     
-    @IBAction func onTouchButtonNike(sender: AnyObject) {
-        writeMessage("DNike")
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func onTouchDeviceId(sender: AnyObject) {
+        let alert: UIAlertController = UIAlertController(title: nil, message: DeviceUtility.UUIDString, preferredStyle:  UIAlertControllerStyle.Alert)
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+        })
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func loadMessageList() {
+        let path = NSBundle.mainBundle().pathForResource("message", ofType: "json")!
+        let jsonData = NSData(contentsOfFile: path)!
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) as! NSDictionary
+            for key in json.allKeys {
+                let writeString = json.objectForKey(key)
+                messageList.append(MessageEntity(name: key as! String, writeString: writeString as! String))
+            }
+        } catch let err as NSError {
+            print(err.localizedDescription)
+        }
+        
+        tableView.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadMessageList()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onReceiveMessage), name: "onReceiveMessage", object: nil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        textDeviceId.text = DeviceUtility.UUIDString
     }
     
     func onReceiveMessage(notification: NSNotification) {
@@ -43,6 +65,24 @@ class MainViewController: UIViewController {
             let data = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)
             peripheral!.writeValue(data!, forCharacteristic: characteristic!, type: CBCharacteristicWriteType.WithoutResponse)
         }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messageList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MessageCell")
+        cell.backgroundColor = UIColor.clearColor()
+        cell.textLabel?.font = UIFont(name: "Dosis-Light", size: 28)
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.text = messageList[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        writeMessage(messageList[indexPath.row].writeString)
     }
 }
 
