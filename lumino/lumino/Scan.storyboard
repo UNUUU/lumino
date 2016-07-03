@@ -3,6 +3,11 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Dosis-Light.ttf">
+            <string>Dosis-Light</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Scan View Controller-->
         <scene sceneID="gzj-wx-Ne7">
@@ -39,8 +44,8 @@
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="6OI-Sd-IWU"/>
                                         <exclude reference="3Jd-qe-8E7"/>
+                                        <include reference="6OI-Sd-IWU"/>
                                     </mask>
                                 </variation>
                             </textView>
@@ -58,16 +63,16 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="B3Q-Mq-Mrg"/>
-                                <exclude reference="plI-bt-Jas"/>
                                 <exclude reference="WJ0-Ed-Qmd"/>
+                                <exclude reference="plI-bt-Jas"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
                                 <exclude reference="B3Q-Mq-Mrg"/>
-                                <exclude reference="plI-bt-Jas"/>
                                 <include reference="WJ0-Ed-Qmd"/>
                                 <exclude reference="ZEz-is-4Yp"/>
+                                <exclude reference="plI-bt-Jas"/>
                             </mask>
                         </variation>
                     </view>

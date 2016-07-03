@@ -39,7 +39,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
         case .PoweredOn:
             Logger.log("powered on")
             Logger.log("Peripheralの検索中")
+            textProgress.selectable = true
             textProgress.text = "scanning peripherals..."
+            textProgress.selectable = false
             centralManager.scanForPeripheralsWithServices(nil, options: nil)
             break
         case .Resetting:
@@ -67,7 +69,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
         if (PERIPHERAL_UUID == peripheral.identifier.UUIDString) {
             centralManager.stopScan()
             Logger.log("Peripheralへの接続中")
+            textProgress.selectable = true
             textProgress.text = "connecting peripheral..."
+            textProgress.selectable = false
             self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
         }
@@ -80,7 +84,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
             (action: UIAlertAction!) -> Void in
             Logger.log("Cancel")
             Logger.log("Peripheralの検索中")
+            self.textProgress.selectable = true
             self.textProgress.text = "scanning peripherals..."
+            self.textProgress.selectable = false
             self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
         })
         alert.addAction(cancelAction)
@@ -89,7 +95,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         Logger.log("サービスの検索中")
+        textProgress.selectable = true
         textProgress.text = "scanning services..."
+        textProgress.selectable = false
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
@@ -107,7 +115,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
+                self.textProgress.selectable = true
                 self.textProgress.text = "scanning peripherals..."
+                self.textProgress.selectable = false
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -122,7 +132,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
+                self.textProgress.selectable = true
                 self.textProgress.text = "scanning peripherals..."
+                self.textProgress.selectable = false
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -133,7 +145,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
         for service in peripheral.services! {
             Logger.log("Service: \(service.UUID.UUIDString)")
             Logger.log("Characteristicの検索中")
+            textProgress.selectable = true
             textProgress.text = "scanning characteristics..."
+            textProgress.selectable = false
             peripheral.discoverCharacteristics(nil, forService: service)
         }
     }
@@ -146,7 +160,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
+                self.textProgress.selectable = true
                 self.textProgress.text = "scanning peripherals..."
+                self.textProgress.selectable = false
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -161,7 +177,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
                 (action: UIAlertAction!) -> Void in
                 Logger.log("Cancel")
                 Logger.log("Peripheralの検索中")
+                self.textProgress.selectable = true
                 self.textProgress.text = "scanning peripherals..."
+                self.textProgress.selectable = false
                 self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
             })
             alert.addAction(cancelAction)
@@ -176,7 +194,9 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
                 self.peripheral = peripheral
                 self.characteristic = characteristic
                 Logger.log("接続完了")
+                textProgress.selectable = true
                 textProgress.text = "connection completed"
+                textProgress.selectable = false
                 navigateToMainViewController()
                 return
             }
@@ -184,7 +204,8 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
     }
     
     func navigateToMainViewController() {
-        let mainViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("MainViewController")  as! MainViewController
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let mainViewController =  storyboard.instantiateInitialViewController() as! MainViewController
         mainViewController.peripheral = self.peripheral
         mainViewController.characteristic = self.characteristic
         self.presentViewController(mainViewController, animated: true, completion: nil)
