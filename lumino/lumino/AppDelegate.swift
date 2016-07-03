@@ -17,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private let deviceId: String? = UIDevice.currentDevice().identifierForVendor?.UUIDString
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
@@ -134,11 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func registerNotificationToken(token: String) {
-        guard let deviceId = deviceId else {
-            print("not found device id")
-            return
-        }
-        Alamofire.request(.PUT, "https://lumino.herokuapp.com/\(deviceId)/notification", parameters: ["token": token]).responseString {
+        Alamofire.request(.PUT, "https://lumino.herokuapp.com/\(DeviceUtility.UUIDString)/notification", parameters: ["token": token]).responseString {
             response in
             print("statusCode: \(response.response?.statusCode)")
             if response.result.isFailure {

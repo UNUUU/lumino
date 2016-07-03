@@ -9,4 +9,5 @@ target 'lumino' do
   pod 'Alamofire', '~> 3.4'
   pod 'Firebase/Messaging'
   pod 'Antenna'
+  pod 'SwiftKeychainWrapper'
 end

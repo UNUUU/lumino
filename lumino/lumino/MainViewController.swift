@@ -14,8 +14,6 @@ class MainViewController: UIViewController {
     var peripheral: CBPeripheral?
     var characteristic: CBCharacteristic?
     
-    private let deviceId: String? = UIDevice.currentDevice().identifierForVendor?.UUIDString
-    
     @IBOutlet weak var textDeviceId: UITextView!
     
     @IBAction func onTouchButtonNike(sender: AnyObject) {
@@ -29,7 +27,7 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        textDeviceId.text = deviceId
+        textDeviceId.text = DeviceUtility.UUIDString
     }
     
     func onReceiveMessage(notification: NSNotification) {
