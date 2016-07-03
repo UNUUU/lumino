@@ -46,9 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
-        let registrationToken = FIRInstanceID.instanceID().token()!
-        print("registration token: \(registrationToken)")
-        
         // Connect to FCM since connection may have failed when attempted before having a token.
         connectToFcm()
     }
