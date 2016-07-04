@@ -338,7 +338,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				PROVISIONING_PROFILE = "5c4031bc-4cdf-4908-b017-bf112919e250";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,7 +379,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				PROVISIONING_PROFILE = "5c4031bc-4cdf-4908-b017-bf112919e250";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -397,7 +397,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				PROVISIONING_PROFILE = "5c4031bc-4cdf-4908-b017-bf112919e250";
 				SWIFT_OBJC_BRIDGING_HEADER = "lumino/lumino-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -416,7 +416,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f28e8853-1a5c-43e1-9878-c7e7ddfa7a3d";
+				PROVISIONING_PROFILE = "5c4031bc-4cdf-4908-b017-bf112919e250";
 				SWIFT_OBJC_BRIDGING_HEADER = "lumino/lumino-Bridging-Header.h";
 			};
 			name = Release;
