@@ -44,6 +44,7 @@
 		EC1C8E661D1E170800AB98E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC1F4EC81D26A55800326C59 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
 		EC1F4ECD1D26CF4100326C59 /* lumino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lumino-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC26F4AD1D2A9CDE00D4511E /* lumino.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lumino.entitlements; sourceTree = "<group>"; };
 		EC4C26E71D2950EF00C79D3A /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		EC4C26E91D2952E800C79D3A /* LaunchImage-700-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-700-568@2x.png"; sourceTree = "<group>"; };
 		EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		EC1C8E591D1E170800AB98E8 /* lumino */ = {
 			isa = PBXGroup;
 			children = (
+				EC26F4AD1D2A9CDE00D4511E /* lumino.entitlements */,
 				EC0DF3F41D29584000D5570A /* Dosis-Light.ttf */,
 				EC4C26E91D2952E800C79D3A /* LaunchImage-700-568@2x.png */,
 				EC4C26E71D2950EF00C79D3A /* title@2x.png */,
@@ -161,6 +163,9 @@
 						DevelopmentTeam = U3G33TW96T;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -387,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = lumino/lumino.entitlements;
 				INFOPLIST_FILE = lumino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unuuu.lumino;
@@ -403,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = lumino/lumino.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				INFOPLIST_FILE = lumino/Info.plist;
