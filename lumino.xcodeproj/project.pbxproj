@@ -24,6 +24,7 @@
 		EC4C26E81D2950EF00C79D3A /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC4C26E71D2950EF00C79D3A /* title@2x.png */; };
 		EC544CBB1D1EDDE800A07B3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */; };
 		ECA1ABF41D278A52003E8865 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1ABF31D278A52003E8865 /* Logger.swift */; };
+		ECE8FF361D2D60EF00743C71 /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF351D2D60EF00743C71 /* DateUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		EC4C26E91D2952E800C79D3A /* LaunchImage-700-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-700-568@2x.png"; sourceTree = "<group>"; };
 		EC544CBA1D1EDDE800A07B3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ECA1ABF31D278A52003E8865 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		ECE8FF351D2D60EF00743C71 /* DateUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
 		F45FDD43264C5E15D7652D31 /* Pods_lumino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lumino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				EC0DF3FB1D29719C00D5570A /* DeviceUtility.swift */,
 				EC0DF3FD1D297D6700D5570A /* message.json */,
 				EC0DF3FF1D29800F00D5570A /* MessageEntity.swift */,
+				ECE8FF351D2D60EF00743C71 /* DateUtility.swift */,
 			);
 			path = lumino;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				EC1F4EC91D26A55800326C59 /* PeripheralViewController.swift in Sources */,
 				EC1C8E5D1D1E170800AB98E8 /* MainViewController.swift in Sources */,
 				EC1C8E5B1D1E170800AB98E8 /* AppDelegate.swift in Sources */,
+				ECE8FF361D2D60EF00743C71 /* DateUtility.swift in Sources */,
 				EC0DF3FA1D29644800D5570A /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

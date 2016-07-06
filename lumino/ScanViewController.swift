@@ -27,10 +27,6 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func centralManagerDidUpdateState(central: CBCentralManager) {
         switch central.state {
         case .PoweredOff:
@@ -103,6 +99,8 @@ class ScanViewController: UIViewController , CBCentralManagerDelegate, CBPeriphe
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        // TODO: Peripheralとの接続が切れた時に呼ばれる
+        // MainViewControllerを閉じて再度Peripheralを検索する
         self.peripheral = nil
         self.characteristic = nil
     }
