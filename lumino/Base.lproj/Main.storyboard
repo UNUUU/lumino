@@ -31,7 +31,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="connected with" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tk-mg-Tix">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="connected with" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tk-mg-Tix">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="119" id="GC3-UY-O7R"/>
@@ -61,6 +61,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PPh-bv-MVA" id="g7O-dZ-KqJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -70,7 +71,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vRL-W2-KPq"/>
                                 </connections>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="lumino.uno" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4p-Qe-ZbS">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="lumino.uno" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4p-Qe-ZbS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="ETH-ZT-EkZ"/>
@@ -144,6 +145,9 @@
                                 <exclude reference="2je-ce-qtg"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="hLr-tf-Xmw"/>
+                                <exclude reference="Ejk-Mb-Fb6"/>
+                                <exclude reference="yle-I1-dGR"/>
                                 <exclude reference="Ajh-An-N40"/>
                                 <exclude reference="NUP-9s-KXy"/>
                                 <exclude reference="54h-1B-xl8"/>
@@ -154,9 +158,6 @@
                                 <exclude reference="c4D-dp-83J"/>
                                 <exclude reference="ddL-Xf-ENy"/>
                                 <exclude reference="lM3-NC-PUN"/>
-                                <exclude reference="Ejk-Mb-Fb6"/>
-                                <exclude reference="yle-I1-dGR"/>
-                                <exclude reference="hLr-tf-Xmw"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -168,6 +169,9 @@
                                 <include reference="2je-ce-qtg"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="hLr-tf-Xmw"/>
+                                <include reference="Ejk-Mb-Fb6"/>
+                                <include reference="yle-I1-dGR"/>
                                 <include reference="Ajh-An-N40"/>
                                 <include reference="NUP-9s-KXy"/>
                                 <exclude reference="54h-1B-xl8"/>
@@ -178,9 +182,6 @@
                                 <exclude reference="c4D-dp-83J"/>
                                 <exclude reference="ddL-Xf-ENy"/>
                                 <include reference="lM3-NC-PUN"/>
-                                <include reference="Ejk-Mb-Fb6"/>
-                                <include reference="yle-I1-dGR"/>
-                                <include reference="hLr-tf-Xmw"/>
                             </mask>
                         </variation>
                     </view>
