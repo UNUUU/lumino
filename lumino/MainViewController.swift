@@ -10,10 +10,7 @@ import UIKit
 import Alamofire
 import CoreBluetooth
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var peripheral: CBPeripheral?
-    var characteristic: CBCharacteristic?
-    
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, OnBluetoothInteractionListener {
     private var messageList: [MessageEntity] = []
     
     @IBOutlet weak var tableView: UITableView!
@@ -46,6 +43,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        BluetoothManager.sharedManager.listener = self
         
         loadMessageList()
         
@@ -63,10 +64,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func writeMessage(message: String) {
-        if (peripheral != nil && characteristic != nil) {
+        if (BluetoothManager.sharedManager.peripheral != nil
+            && BluetoothManager.sharedManager.characteristic != nil) {
             print("wrote message \(message)")
             let data = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)
-            peripheral!.writeValue(data!, forCharacteristic: characteristic!, type: CBCharacteristicWriteType.WithoutResponse)
+            BluetoothManager.sharedManager.peripheral!.writeValue(data!, forCharacteristic: BluetoothManager.sharedManager.characteristic!, type: CBCharacteristicWriteType.WithoutResponse)
         }
     }
     
@@ -86,6 +88,42 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         writeMessage(messageList[indexPath.row].writeString)
+    }
+    
+    func didDisconnectPeripheral() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func scanningPeripheral() {
+        
+    }
+    
+    func connectingPeripheral() {
+        
+    }
+    
+    func scanningService() {
+        
+    }
+    
+    func didFailToConnectPeripheral() {
+        
+    }
+    
+    func didFailToDiscoverService() {
+        
+    }
+    
+    func scanningCharacteristic() {
+        
+    }
+    
+    func didFailToDiscoverCharacteristic() {
+        
+    }
+    
+    func completedConnection() {
+        
     }
 }
 
