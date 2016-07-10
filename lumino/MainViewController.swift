@@ -51,7 +51,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         loadMessageList()
         
         // 接続時に現在日時を書き込む
-        writeMessage("CT\(DateUtility.now("HHmmssddMMyyyy"))")
+        writeMessage("T\(DateUtility.now("HHmmssddMMyyyy"))")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onReceiveMessage), name: "onReceiveMessage", object: nil)
     }
