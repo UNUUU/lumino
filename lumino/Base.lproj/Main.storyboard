@@ -100,7 +100,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Jk8-65-8zY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="18"/>
-                                <state key="normal" title="ID">
+                                <state key="normal" title="URL">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -116,7 +116,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="onTouchDeviceId:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N54-Xh-QXV"/>
+                                    <action selector="onTouchUrl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jfI-e6-Sts"/>
                                 </connections>
                             </button>
                         </subviews>

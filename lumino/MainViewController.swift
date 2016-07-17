@@ -15,14 +15,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func onTouchDeviceId(sender: AnyObject) {
-        let alert: UIAlertController = UIAlertController(title: nil, message: DeviceUtility.UUIDString, preferredStyle:  UIAlertControllerStyle.Alert)
-        // キャンセルボタン
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
-            (action: UIAlertAction!) -> Void in
-        })
-        alert.addAction(cancelAction)
-        presentViewController(alert, animated: true, completion: nil)
+    @IBAction func onTouchUrl(sender: AnyObject) {
+        let displayUrl = String(format: "http://lumino.herokuapp.com/%@/display", DeviceUtility.UUIDString)
+        print("copied the display url: \(displayUrl)")
+        let board = UIPasteboard.generalPasteboard()
+        board.setValue(displayUrl, forPasteboardType: "public.text")
     }
     
     private func loadMessageList() {
